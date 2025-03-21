@@ -1,0 +1,7 @@
+/npo-security-docs
+├── index.md                # Home page
+├── installation.md         # Installation guide
+├── configuration.md        # Configuration documentation
+├── dashboards.md           # Kibana dashboard setup
+├── troubleshooting.md      # Common issues and fixes
+└── resources.md            # References and resources
