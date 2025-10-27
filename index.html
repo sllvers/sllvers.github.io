@@ -1,0 +1,515 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TechCERT - Computer Emergency Response Team</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', sans-serif;
+            line-height: 1.6;
+            color: #333;
+        }
+
+        /* Navigation */
+        nav {
+            background: #2c3e50;
+            color: white;
+            padding: 1rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: #3498db;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 100px 20px;
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .hero p {
+            font-size: 1.3rem;
+            max-width: 800px;
+            margin: 0 auto 2rem;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 12px 30px;
+            background: white;
+            color: #667eea;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+
+        /* Main Content */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 60px 20px;
+        }
+
+        .section {
+            margin-bottom: 60px;
+        }
+
+        .section h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            color: #2c3e50;
+        }
+
+        .section p {
+            font-size: 1.1rem;
+            margin-bottom: 1rem;
+            color: #555;
+        }
+
+        /* Services Grid */
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .service-card {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: transform 0.3s;
+        }
+
+        .service-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+        }
+
+        .service-card h3 {
+            color: #667eea;
+            margin-bottom: 1rem;
+            font-size: 1.5rem;
+        }
+
+        .service-card ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .service-card li {
+            padding: 8px 0;
+            padding-left: 25px;
+            position: relative;
+        }
+
+        .service-card li:before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: #667eea;
+            font-weight: bold;
+        }
+
+        /* Stats Section */
+        .stats {
+            background: #f8f9fa;
+            padding: 60px 20px;
+            text-align: center;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 40px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .stat-item h3 {
+            font-size: 3rem;
+            color: #667eea;
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-item p {
+            font-size: 1.1rem;
+            color: #555;
+        }
+
+        /* About Section */
+        .about {
+            background: white;
+        }
+
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            align-items: center;
+        }
+
+        .about-text h2 {
+            margin-bottom: 1.5rem;
+        }
+
+        .about-text p {
+            margin-bottom: 1rem;
+        }
+
+        .about-image {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            height: 400px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.5rem;
+            text-align: center;
+        }
+
+        /* Membership Section */
+        .membership {
+            background: #f8f9fa;
+            padding: 60px 20px;
+        }
+
+        .membership-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .criteria-list {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            margin-top: 30px;
+        }
+
+        .criteria-list h3 {
+            color: #667eea;
+            margin-bottom: 1.5rem;
+        }
+
+        .criteria-list ol {
+            padding-left: 20px;
+        }
+
+        .criteria-list li {
+            padding: 10px 0;
+            font-size: 1.1rem;
+        }
+
+        /* Contact Section */
+        .contact {
+            background: white;
+            text-align: center;
+        }
+
+        .contact-info {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .contact-item {
+            padding: 30px;
+            background: #f8f9fa;
+            border-radius: 10px;
+        }
+
+        .contact-item h3 {
+            color: #667eea;
+            margin-bottom: 1rem;
+        }
+
+        /* Footer */
+        footer {
+            background: #2c3e50;
+            color: white;
+            text-align: center;
+            padding: 30px 20px;
+        }
+
+        footer p {
+            margin: 5px 0;
+        }
+
+        footer a {
+            color: #3498db;
+            text-decoration: none;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .hero p {
+                font-size: 1.1rem;
+            }
+
+            .nav-links {
+                gap: 1rem;
+                font-size: 0.9rem;
+            }
+
+            .about-content {
+                grid-template-columns: 1fr;
+            }
+
+            .section h2 {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <div class="nav-container">
+            <div class="logo">TechCERT</div>
+            <ul class="nav-links">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#services">Services</a></li>
+                <li><a href="#membership">Membership</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <h1>Computer Emergency Response Team</h1>
+        <p>Strengthening security and building technical excellence through collaboration and knowledge sharing</p>
+        <a href="#about" class="btn">Learn More</a>
+    </section>
+
+    <!-- Stats Section -->
+    <div class="stats">
+        <div class="stats-grid">
+            <div class="stat-item">
+                <h3>100+</h3>
+                <p>Organizations Protected</p>
+            </div>
+            <div class="stat-item">
+                <h3>24/7</h3>
+                <p>Security Monitoring</p>
+            </div>
+            <div class="stat-item">
+                <h3>500+</h3>
+                <p>Incidents Resolved</p>
+            </div>
+            <div class="stat-item">
+                <h3>50+</h3>
+                <p>Security Trainings</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- About Section -->
+    <section id="about" class="about">
+        <div class="container">
+            <div class="about-content">
+                <div class="about-text">
+                    <h2>About TechCERT</h2>
+                    <p>The Computer Emergency Response Team (TechCERT) seeks to create a formal, coalition-based structure for reducing and mitigating online threats in our community, as well as to expand technical research capacity on threats and surveillance.</p>
+                    <p>Our mission is to ensure greater online freedom and security for organizations through comprehensive security services, training programs, and incident response capabilities.</p>
+                    <p>We believe in the power of collaboration and knowledge sharing to build a safer digital environment for everyone.</p>
+                </div>
+                <div class="about-image">
+                    <div>
+                        <p>🛡️</p>
+                        <p>Protecting Your<br>Digital Assets</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" class="section">
+        <div class="container">
+            <h2>Our Services</h2>
+            <p>We provide comprehensive security services to help organizations protect themselves against cyber threats.</p>
+            
+            <div class="services-grid">
+                <div class="service-card">
+                    <h3>🚨 Incident Response</h3>
+                    <ul>
+                        <li>24/7 emergency helpdesk support</li>
+                        <li>Rapid incident investigation</li>
+                        <li>Threat analysis and mitigation</li>
+                        <li>Post-incident reporting</li>
+                        <li>Recovery assistance</li>
+                    </ul>
+                </div>
+
+                <div class="service-card">
+                    <h3>🎓 Security Training</h3>
+                    <ul>
+                        <li>Digital security workshops</li>
+                        <li>Phishing awareness training</li>
+                        <li>Incident handling courses</li>
+                        <li>Best practices seminars</li>
+                        <li>Certification programs</li>
+                    </ul>
+                </div>
+
+                <div class="service-card">
+                    <h3>🔍 Security Audits</h3>
+                    <ul>
+                        <li>Vulnerability assessments</li>
+                        <li>Network security review</li>
+                        <li>Policy compliance checks</li>
+                        <li>Risk analysis reports</li>
+                        <li>Remediation guidance</li>
+                    </ul>
+                </div>
+
+                <div class="service-card">
+                    <h3>📚 Knowledge Base</h3>
+                    <ul>
+                        <li>Security documentation</li>
+                        <li>How-to guides and tutorials</li>
+                        <li>Best practices library</li>
+                        <li>Threat intelligence updates</li>
+                        <li>Community resources</li>
+                    </ul>
+                </div>
+
+                <div class="service-card">
+                    <h3>🤝 Community Support</h3>
+                    <ul>
+                        <li>Regional response hubs</li>
+                        <li>Peer support networks</li>
+                        <li>Collaboration platforms</li>
+                        <li>Regular meetups</li>
+                        <li>Information sharing</li>
+                    </ul>
+                </div>
+
+                <div class="service-card">
+                    <h3>⚡ Threat Monitoring</h3>
+                    <ul>
+                        <li>Continuous security monitoring</li>
+                        <li>Early warning alerts</li>
+                        <li>Threat intelligence sharing</li>
+                        <li>Vulnerability notifications</li>
+                        <li>Security advisories</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Membership Section -->
+    <section id="membership" class="membership">
+        <div class="membership-content">
+            <h2>Membership</h2>
+            <p>TechCERT aims to build a coalition-based structure for preventing and mitigating online threats in our community. To achieve this goal, support services are provided through a membership model.</p>
+            
+            <div class="criteria-list">
+                <h3>Membership Criteria</h3>
+                <p>To become a member of TechCERT, the following criteria must be fulfilled:</p>
+                <ol>
+                    <li>Organization must commit a staff member to join the TechCERT Response working group</li>
+                    <li>All staff of the organization must be trained on basic Internet security</li>
+                    <li>Organization must comply with the Traffic Light Protocol (TLP) for information sharing</li>
+                    <li>Active participation in community security initiatives</li>
+                    <li>Commitment to knowledge sharing and collaboration</li>
+                </ol>
+                <p style="margin-top: 20px;"><em>Note: At present, there is no membership fee to join TechCERT. We are a community-based project and community support is essential for sustainability.</em></p>
+            </div>
+
+            <div style="text-align: center; margin-top: 40px;">
+                <a href="#contact" class="btn">Join TechCERT</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact">
+        <div class="container">
+            <h2>Contact Us</h2>
+            <p>Get in touch with our team for security assistance, training inquiries, or membership information.</p>
+            
+            <div class="contact-info">
+                <div class="contact-item">
+                    <h3>📧 Email</h3>
+                    <p>info@techcert.org<br>support@techcert.org</p>
+                </div>
+                <div class="contact-item">
+                    <h3>🚨 Emergency</h3>
+                    <p>incident@techcert.org<br>24/7 Helpdesk</p>
+                </div>
+                <div class="contact-item">
+                    <h3>💬 Community</h3>
+                    <p>Join our forums<br>Response hubs</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2025 TechCERT - Computer Emergency Response Team</p>
+        <p>Strengthening security through collaboration | <a href="#home">Privacy Policy</a> | <a href="#home">Terms of Service</a></p>
+    </footer>
+</body>
+</html>
